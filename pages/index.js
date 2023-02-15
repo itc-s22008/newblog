@@ -1,10 +1,11 @@
-import Layout from 'components/layout'
 import Hero from 'components/hero'
 
 export default function Home () {
   return (
-    <Layout>
-      <Hero />
-    </Layout>
+    <Hero
+      title='about'
+      subtitle='アウトプットしていくサイト'
+      imageOn
+    />
   )
 }
