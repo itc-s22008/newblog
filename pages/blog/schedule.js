@@ -1,4 +1,6 @@
 import { getPostBySlug } from 'lib/api'
+import { extractText } from 'lib/extract-test'
+import Meta from 'components/meta'
 import Container from 'components/container'
 import PostHeader from 'components/pust-header'
 import PostBody from 'components/post-body'
@@ -13,6 +15,13 @@ export default function Post({
   content,
   eyecatch,
   categories,
+    <Meta
+        pageTitle={title}
+        pageDesc={description}
+        pageImg={eyecatch.url}
+        pageImgW={eyecatch.width}
+        pageImgH={eyecatch.height}
+      />
   description,
   prevPost,
   nextPost,
@@ -58,6 +67,8 @@ export async function getStaticProps() {
 
   const post = await getPostBySlug(slug)
 
+  const description = extractText(post.content)
+
    return {
     props: {
       title: post.title,
@@ -65,6 +76,7 @@ export async function getStaticProps() {
       content: post.content,
       eyecatch: eyecatch,
       categories: post.categories,
+      
       description: description,
       prevPost: prevPost,
       nextPost: nextPost,
