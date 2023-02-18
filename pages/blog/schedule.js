@@ -8,6 +8,7 @@ import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-colum
 import ConvertBody from 'components/converto-body'
 import PostCategorise from 'components/post-categories'
 import Image from 'next/image'
+import { eyecatchLocal } from 'lib/constants'
 
 export default function Post({
   title,
@@ -42,6 +43,8 @@ export default function Post({
             sizes='(min-width: 1152px) 1152px, 100vw'
             priority
             placeholder='blur'
+            blurDateURL={eyecatch.blurDateURL}
+            placeholder='blur'
             blurDataURL={eyecatch.blurDataURL}
           />
         </figure>
@@ -63,17 +66,21 @@ export default function Post({
 }
 
 export async function getStaticProps() {
-  const slug = 'schedule'
+  const slug = 'micro'
 
   const post = await getPostBySlug(slug)
 
   const description = extractText(post.content)
+   
+  const eyecatch = post.eyecatch ?? eyecatchLocal
+  eyecatch.blurDateURL = base64
 
    return {
     props: {
       title: post.title,
       publish: post.publishDate,
       content: post.content,
+      eyecatch: post.eyecatch ,
       eyecatch: eyecatch,
       categories: post.categories,
       
