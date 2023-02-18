@@ -1,6 +1,6 @@
 import { getPostBySlug } from 'lib/api'
 import Container from 'components/container'
-
+import PostHeader from 'components/pust-header'
 export default function Post({
   title,
   publish,
@@ -13,6 +13,9 @@ export default function Post({
 }) {
   return (
     <Container>
+      <article>
+        <PostHeader title={title} subtitle='Blog Article' publish ={publish} />
+      </article>
       <h1>{title}</h1>
     </Container>
   )
