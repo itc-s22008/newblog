@@ -1,6 +1,9 @@
 import { getPostBySlug } from 'lib/api'
 import Container from 'components/container'
 import PostHeader from 'components/pust-header'
+import PostBody from 'components/post-body'
+import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
+import ConvertBody from 'components/converto-body'
 import Image from 'next/image'
 
 export default function Post({
@@ -32,6 +35,17 @@ export default function Post({
             blurDataURL={eyecatch.blurDataURL}
           />
         </figure>
+        
+          <TwoColumn>
+          <TwoColumnMain>
+            <PostBody>
+               <ConvertBody contentHTML={content} />
+            </PostBody>
+          </TwoColumnMain>
+          <TwoColumnSidebar>
+            <PostCategories categories={categories} />
+          </TwoColumnSidebar>
+        </TwoColumn>
       </article>
       <h1>{title}</h1>
     </Container>
