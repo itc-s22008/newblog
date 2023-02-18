@@ -14,6 +14,9 @@ export default function About () {
     <Hero
       title='about'
       subtitle='About development activities'
+      pageImg={eyecatch.src}
+      pageImgw={eyecatch.width}
+      pageImgH={eyecatch.height}
     />
        <figure>
         <Image
