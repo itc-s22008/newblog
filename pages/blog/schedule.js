@@ -4,6 +4,7 @@ import PostHeader from 'components/pust-header'
 import PostBody from 'components/post-body'
 import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
 import ConvertBody from 'components/converto-body'
+import PostCategorise from 'components/post-categories'
 import Image from 'next/image'
 
 export default function Post({
