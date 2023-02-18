@@ -7,6 +7,13 @@ export async function getStaticProps() {
   const resPromise = Client.get({
    emdpoint: 'blogs',
   })
+
+  try {
+    const res = await resPromise
+    console.log(res)
+  } catch (err) {
+    console.log(err)
+  }
   resPromise.then((res) => console.log(res)).catch((err) => console.log(err))
   console.log(resPromise)
   return {
