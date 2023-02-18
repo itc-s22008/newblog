@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Container from 'components/container'
-import Hero from 'components/hero'
+import Meta from 'components/meta'
 import PostBody from 'components/post-body'
 import Contact from 'components/contact'
 import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
@@ -10,9 +10,7 @@ import eyecatch from 'images/about.jpg'
 export default function About () {
   return (
     <Container>
-      <Head>
-        <title> about </title>
-      </Head>
+      <Meta pagetitle='about' />
     <Hero
       title='about'
       subtitle='About development activities'
