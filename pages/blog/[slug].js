@@ -1,5 +1,6 @@
 import { getPostBySlug, getAllSlugs } from 'lib/api'
 import { extractText } from 'lib/extract-test'
+import { prevNextPost } from 'lib/prev/next-post'
 import Meta from 'components/meta'
 import Container from 'components/container'
 import PostHeader from 'components/pust-header'
@@ -7,6 +8,7 @@ import PostBody from 'components/post-body'
 import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
 import ConvertBody from 'components/converto-body'
 import PostCategorise from 'components/post-categories'
+import Pagination from 'components/pagination'
 import Image from 'next/image'
 import { eyecatchLocal } from 'lib/constants'
 
@@ -40,14 +42,14 @@ export default function Post({
             layout='responsive'
             width={eyecatch.width}
             height={eyecatch.height}
-            sizes='(min-width: 1152px) 1152px, 100vw'
-            priority
-            placeholder='blur'
-            blurDateURL={eyecatch.blurDateURL}
-            placeholder='blur'
-            blurDataURL={eyecatch.blurDataURL}
-          />
-        </figure>
+          sizes='(min-width: 1152px) 1152px, 100vw'
+          priority
+          placeholder='blur'
+          blurDateURL={eyecatch.blurDateURL}
+          placeholder='blur'
+          blurDataURL={eyecatch.blurDataURL}
+        />
+      </figure>
         
           <TwoColumn>
           <TwoColumnMain>
@@ -59,8 +61,15 @@ export default function Post({
             <PostCategories categories={categories} />
           </TwoColumnSidebar>
         </TwoColumn>
+      <div> {prevPost.title} {prevPost.slug}</div>
+      <div> {nextPost.title} {nextPost.slug}</div>
+         <Pagination
+          prevText={prevPost.title}
+          prevUrl={`/blog/${prevPost.slug}`}
+          nextText={nextPost.title}
+          nextUrl={`/blog/${nextPost.slug}`}
+        />
       </article>
-      <h1>{title}</h1>
     </Container>
   )
 }
@@ -83,6 +92,8 @@ export async function getStaticProps(context) {
   const eyecatch = post.eyecatch ?? eyecatchLocal
   eyecatch.blurDateURL = base64
 
+  const allSlugs = await getAllSlugs()
+  const [prevPost, nextPost] = prevNextPost(alSlugs, slug)
    return {
     props: {
       title: post.title,
