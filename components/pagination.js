@@ -18,7 +18,7 @@ export default function Pagination({
         <li className={styles.prev}>
           <Link href={prevUrl}>
             <a className={styles.iconText}>
-              <FontAwesomeIcon icon={faChevronLeft} color='var(--gray-25)' />
+              <FontAwesomeIcon icon={faChevronLeft} color="var(--gray-25)" />
               <span>{prevText}</span>
             </a>
           </Link>
@@ -29,7 +29,7 @@ export default function Pagination({
           <Link href={nextUrl}>
             <a className={styles.iconText}>
               <span>{nextText}</span>
-              <FontAwesomeIcon icon={faChevronRight} color='var(--gray-25)' />
+              <FontAwesomeIcon icon={faChevronRight} color="var(--gray-25)" />
             </a>
           </Link>
         </li>
